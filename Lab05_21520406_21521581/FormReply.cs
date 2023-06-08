@@ -66,16 +66,16 @@ namespace Lab05_21520406_21521581
 
         private void btSend_Click(object sender, EventArgs e)
         {
-            // string newaddr = format(to);
-            string newaddr = format(to);
+            string newfr = format(gmail);
+            string newto = format(to);
             try
             {
                 var client = new SmtpClient();
                 client.Connect("smtp.gmail.com", 465, true); // smtp host, port, use ssl.
-                client.Authenticate(gmail, pass); // gmail account, app password
+                client.Authenticate(newfr, pass); // gmail account, app password
                 var reply = new MimeMessage();
-                reply.From.Add(new MailboxAddress(tbName.Text, gmail));
-                reply.To.Add(new MailboxAddress("", newaddr));
+                reply.From.Add(new MailboxAddress(tbName.Text, newfr));
+                reply.To.Add(new MailboxAddress("", newto));
                 reply.Subject = tbSub.Text;
                 builder.TextBody = rtbBody.Text;
                 reply.Body = builder.ToMessageBody();

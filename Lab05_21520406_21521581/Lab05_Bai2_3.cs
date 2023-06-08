@@ -165,6 +165,9 @@ namespace Lab05_21520406_21521581
 
         private void btRef_Click(object sender, EventArgs e)
         {
+            page = 0;
+            lbpage.Text = (page * 20 + 1).ToString() + " - " + (page * 20 + 20).ToString();
+            tbPage.Text = (page + 1).ToString();
             LoadF(page);
         }
 
