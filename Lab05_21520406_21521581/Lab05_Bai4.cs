@@ -16,7 +16,8 @@ namespace Lab05_21520406_21521581
 {
     public partial class Lab05_Bai4 : Form
     {
-        string gmail, pass;
+        string gmail, pass, type = "";
+        int page = 0, tolpage;
         public Lab05_Bai4(string gmail, string pass)
         {
             InitializeComponent();
@@ -56,11 +57,9 @@ namespace Lab05_21520406_21521581
             }
         }
 
-        private void cbType_SelectedValueChanged(object sender, EventArgs e)
+        void LoadF(int page)
         {
             lvBox.Items.Clear();
-            string type = cbType.Text.ToString();
-            if (type != null) btRef.Enabled = true;
             MessageBox.Show("Đang load mail, vui lòng chờ trong giây lát!");
             if (type == "IMAP")
             {
@@ -69,8 +68,14 @@ namespace Lab05_21520406_21521581
                 client.Authenticate(gmail, pass);
                 var inbox = client.Inbox;
                 inbox.Open(FolderAccess.ReadOnly);
-                int limit = 1;
-                for (int i = inbox.Count - 1; i >= 0; i--)
+
+                lbTotal.Text = "Total: " + inbox.Count.ToString();
+
+                if (inbox.Count % 20 > 0) tolpage = inbox.Count / 20 + 1;
+                else tolpage = inbox.Count % 20;
+
+                int limit = 1 + 20 * page;
+                for (int i = inbox.Count - 1 - (page * 20); i >= 0; i--)
                 {
                     var message = inbox.GetMessage(i);
                     ListViewItem item = new ListViewItem(limit.ToString());
@@ -78,7 +83,7 @@ namespace Lab05_21520406_21521581
                     item.SubItems.Add(message.Subject.ToString());
                     item.SubItems.Add(message.Date.ToString());
                     lvBox.Items.Add(item);
-                    if (limit == 20)
+                    if (limit % 20 == 0)
                     {
                         break;
                     }
@@ -93,8 +98,13 @@ namespace Lab05_21520406_21521581
                 var client = new Pop3Client();
                 client.Connect("pop.gmail.com", 995, true);
                 client.Authenticate(gmail, pass);
-                int limit = 1;
-                for (int i = client.Count - 1; i >= 0; i--)
+                int limit = 1 + 20 * page;
+                lbTotal.Text = "Total: " + client.Count.ToString();
+
+                if (client.Count % 20 > 0) tolpage = client.Count / 20 + 1;
+                else tolpage = client.Count % 20;
+
+                for (int i = client.Count - 1 - (page * 20); i >= 0; i--)
                 {
                     var message = client.GetMessage(i);
                     ListViewItem item = new ListViewItem(limit.ToString());
@@ -102,7 +112,7 @@ namespace Lab05_21520406_21521581
                     item.SubItems.Add(message.Subject.ToString());
                     item.SubItems.Add(message.Date.ToString());
                     lvBox.Items.Add(item);
-                    if (limit == 20)
+                    if (limit % 20 == 0)
                     {
                         break;
                     }
@@ -111,6 +121,45 @@ namespace Lab05_21520406_21521581
                         limit++;
                     }
                 }
+            }
+        }
+
+        private void cbType_SelectedValueChanged(object sender, EventArgs e)
+        {
+            type = cbType.Text.ToString();
+            if (type != null) btRef.Enabled = true;
+            LoadF(page);
+            tbPage.Text = (page + 1).ToString();
+            lbpage.Text = "1 - 20";
+        }
+
+        private void btBack_Click(object sender, EventArgs e)
+        {
+            if (page > 0)
+            {
+                page--;
+                lbpage.Text = (page * 20 + 1).ToString() + " - " + (page * 20 + 20).ToString();
+                tbPage.Text = (page + 1).ToString();
+                LoadF(page);
+            }
+            else
+            {
+                MessageBox.Show("Không thể back!");
+            }
+        }
+
+        private void btNext_Click(object sender, EventArgs e)
+        {
+            if (page < tolpage)
+            {
+                page++;
+                lbpage.Text = (page * 20 + 1).ToString() + " - " + (page * 20 + 20).ToString();
+                tbPage.Text = (page + 1).ToString();
+                LoadF(page);
+            }
+            else
+            {
+                MessageBox.Show("Không thể next!");
             }
         }
 
@@ -135,7 +184,7 @@ namespace Lab05_21520406_21521581
 
         private void btRef_Click(object sender, EventArgs e)
         {
-            cbType_SelectedValueChanged(sender, e);
+            LoadF(page);
         }
     }
 }

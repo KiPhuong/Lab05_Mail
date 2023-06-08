@@ -38,6 +38,11 @@
             this.btRef = new System.Windows.Forms.Button();
             this.cbType = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.lbTotal = new System.Windows.Forms.Label();
+            this.btBack = new System.Windows.Forms.Button();
+            this.btNext = new System.Windows.Forms.Button();
+            this.tbPage = new System.Windows.Forms.TextBox();
+            this.lbpage = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -53,7 +58,7 @@
             // 
             this.tbOwn.Location = new System.Drawing.Point(67, 22);
             this.tbOwn.Name = "tbOwn";
-            this.tbOwn.Size = new System.Drawing.Size(359, 23);
+            this.tbOwn.Size = new System.Drawing.Size(317, 23);
             this.tbOwn.TabIndex = 8;
             // 
             // lvBox
@@ -109,7 +114,7 @@
             this.cbType.Items.AddRange(new object[] {
             "IMAP",
             "POP3"});
-            this.cbType.Location = new System.Drawing.Point(558, 22);
+            this.cbType.Location = new System.Drawing.Point(478, 22);
             this.cbType.Name = "cbType";
             this.cbType.Size = new System.Drawing.Size(89, 23);
             this.cbType.TabIndex = 12;
@@ -118,17 +123,69 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(490, 25);
+            this.label2.Location = new System.Drawing.Point(410, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 15);
             this.label2.TabIndex = 13;
             this.label2.Text = "Chọn host";
             // 
+            // lbTotal
+            // 
+            this.lbTotal.AutoSize = true;
+            this.lbTotal.Location = new System.Drawing.Point(493, 454);
+            this.lbTotal.Name = "lbTotal";
+            this.lbTotal.Size = new System.Drawing.Size(38, 15);
+            this.lbTotal.TabIndex = 14;
+            this.lbTotal.Text = "Total: ";
+            // 
+            // btBack
+            // 
+            this.btBack.Location = new System.Drawing.Point(590, 451);
+            this.btBack.Name = "btBack";
+            this.btBack.Size = new System.Drawing.Size(50, 23);
+            this.btBack.TabIndex = 15;
+            this.btBack.Text = "Back";
+            this.btBack.UseVisualStyleBackColor = true;
+            this.btBack.Click += new System.EventHandler(this.btBack_Click);
+            // 
+            // btNext
+            // 
+            this.btNext.Location = new System.Drawing.Point(706, 451);
+            this.btNext.Name = "btNext";
+            this.btNext.Size = new System.Drawing.Size(50, 23);
+            this.btNext.TabIndex = 16;
+            this.btNext.Text = "Next";
+            this.btNext.UseVisualStyleBackColor = true;
+            this.btNext.Click += new System.EventHandler(this.btNext_Click);
+            // 
+            // tbPage
+            // 
+            this.tbPage.Enabled = false;
+            this.tbPage.Location = new System.Drawing.Point(656, 451);
+            this.tbPage.Name = "tbPage";
+            this.tbPage.Size = new System.Drawing.Size(35, 23);
+            this.tbPage.TabIndex = 17;
+            this.tbPage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lbpage
+            // 
+            this.lbpage.AutoSize = true;
+            this.lbpage.Location = new System.Drawing.Point(655, 477);
+            this.lbpage.Name = "lbpage";
+            this.lbpage.Size = new System.Drawing.Size(10, 15);
+            this.lbpage.TabIndex = 18;
+            this.lbpage.Text = " ";
+            // 
             // Lab05_Bai2_3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 499);
+            this.Controls.Add(this.lbpage);
+            this.Controls.Add(this.tbPage);
+            this.Controls.Add(this.btNext);
+            this.Controls.Add(this.btBack);
+            this.Controls.Add(this.lbTotal);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cbType);
             this.Controls.Add(this.btRef);
@@ -154,5 +211,10 @@
         private Button btRef;
         private ComboBox cbType;
         private Label label2;
+        private Label lbTotal;
+        private Button btBack;
+        private Button btNext;
+        private TextBox tbPage;
+        private Label lbpage;
     }
 }

@@ -40,6 +40,11 @@
             this.btRef = new System.Windows.Forms.Button();
             this.btSendM = new System.Windows.Forms.Button();
             this.btLogout = new System.Windows.Forms.Button();
+            this.tbPage = new System.Windows.Forms.TextBox();
+            this.btNext = new System.Windows.Forms.Button();
+            this.btBack = new System.Windows.Forms.Button();
+            this.lbTotal = new System.Windows.Forms.Label();
+            this.lbpage = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label2
@@ -146,11 +151,63 @@
             this.btLogout.UseVisualStyleBackColor = true;
             this.btLogout.Click += new System.EventHandler(this.btLogout_Click);
             // 
+            // tbPage
+            // 
+            this.tbPage.Enabled = false;
+            this.tbPage.Location = new System.Drawing.Point(667, 450);
+            this.tbPage.Name = "tbPage";
+            this.tbPage.Size = new System.Drawing.Size(35, 23);
+            this.tbPage.TabIndex = 26;
+            this.tbPage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // btNext
+            // 
+            this.btNext.Location = new System.Drawing.Point(717, 450);
+            this.btNext.Name = "btNext";
+            this.btNext.Size = new System.Drawing.Size(50, 23);
+            this.btNext.TabIndex = 25;
+            this.btNext.Text = "Next";
+            this.btNext.UseVisualStyleBackColor = true;
+            this.btNext.Click += new System.EventHandler(this.btNext_Click);
+            // 
+            // btBack
+            // 
+            this.btBack.Location = new System.Drawing.Point(601, 450);
+            this.btBack.Name = "btBack";
+            this.btBack.Size = new System.Drawing.Size(50, 23);
+            this.btBack.TabIndex = 24;
+            this.btBack.Text = "Back";
+            this.btBack.UseVisualStyleBackColor = true;
+            this.btBack.Click += new System.EventHandler(this.btBack_Click);
+            // 
+            // lbTotal
+            // 
+            this.lbTotal.AutoSize = true;
+            this.lbTotal.Location = new System.Drawing.Point(504, 453);
+            this.lbTotal.Name = "lbTotal";
+            this.lbTotal.Size = new System.Drawing.Size(38, 15);
+            this.lbTotal.TabIndex = 23;
+            this.lbTotal.Text = "Total: ";
+            // 
+            // lbpage
+            // 
+            this.lbpage.AutoSize = true;
+            this.lbpage.Location = new System.Drawing.Point(667, 476);
+            this.lbpage.Name = "lbpage";
+            this.lbpage.Size = new System.Drawing.Size(10, 15);
+            this.lbpage.TabIndex = 27;
+            this.lbpage.Text = " ";
+            // 
             // Lab05_Bai4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 499);
+            this.Controls.Add(this.lbpage);
+            this.Controls.Add(this.tbPage);
+            this.Controls.Add(this.btNext);
+            this.Controls.Add(this.btBack);
+            this.Controls.Add(this.lbTotal);
             this.Controls.Add(this.btRef);
             this.Controls.Add(this.btSendM);
             this.Controls.Add(this.btLogout);
@@ -180,5 +237,10 @@
         private Button btRef;
         private Button btSendM;
         private Button btLogout;
+        private TextBox tbPage;
+        private Button btNext;
+        private Button btBack;
+        private Label lbTotal;
+        private Label lbpage;
     }
 }
